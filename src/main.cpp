@@ -38,8 +38,9 @@ void setup() {
 
 void loop() {
   delay(250);  // Wait between readings
-  display.clearDisplay();
-  
+  display.clearDisplay();//Inefficient, make an if-statement to only clear if display needs updating, saving previous 
+  //temperatures and humidity values
+
   //Serial.println("Reading data from DHT sensor...");
   // Read humidity and temperature
 
