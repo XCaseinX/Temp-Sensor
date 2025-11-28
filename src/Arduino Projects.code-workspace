@@ -23,6 +23,14 @@
 		{
 			"name": "Distance",
 			"path": "../../Distance"
+		},
+		{
+			"name": "Temp 2.0",
+			"path": "../../Temp 2.0"
+		},
+		{
+			"name": "NANO_ESP32_RecoveryCode",
+			"path": "../../NANO_ESP32_RecoveryCode"
 		}
 	],
 	"settings": {}

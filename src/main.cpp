@@ -3,7 +3,7 @@
 #include <Adafruit_SSD1306.h>  //OLED Library
 #include <Wire.h>              //I2C Connection
 
-#define DHTPIN 2       // Digital pin connected to the DHT sensor
+#define DHTPIN 5       // Digital pin connected to the DHT sensor //original pin D2
 #define DHTTYPE DHT11  // Define sensor type (DHT11 or DHT22)
 
 const int screenWidth = 128;
@@ -20,12 +20,12 @@ void setup() {
   dht.begin();
   Serial.println("DHT11 Temperature and Humidity Sensor Test");
 
-  if (!display.begin(SSD1306_SWITCHCAPVCC, 0x3C)) {  //Test if oled connects
+  /*if (!display.begin(SSD1306_SWITCHCAPVCC, 0x3C)) {  //Test if oled connects
     Serial.println("SSD1306 allocation failed");
     for (;;)
       ;
   }
-  delay(2000);
+  delay(2000);*/
 
   //Prepare OLED
   display.clearDisplay();
@@ -47,10 +47,10 @@ void loop() {
   humidity = dht.readHumidity();
   temperature = (dht.readTemperature() * 1.8) + 32;  // Celsius by default, converts to F
 
-  if (isnan(humidity) || isnan(temperature)) {
+  /*if (isnan(humidity) || isnan(temperature)) {
     Serial.println("Failed to read from DHT sensor!");
     return;
-  }
+  }*/
 
   display.setCursor(0, 0);
   display.print("Humidity:  ");
@@ -67,11 +67,11 @@ void loop() {
   display.display();  //Display on screen
 
 
-  //Serial monitor for debugging
+  /*Serial monitor for debugging
   Serial.print("Humidity: ");
   Serial.print(humidity);
   Serial.print(" %\t");
   Serial.print("Temperature: ");
   Serial.print(temperature);
-  Serial.println(" °F");
+  Serial.println(" °F");*/
 }
