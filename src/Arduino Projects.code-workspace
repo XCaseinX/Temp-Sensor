@@ -1,0 +1,29 @@
+{
+	"folders": [
+		{
+			"name": "Arduino Blink Test",
+			"path": "../../Arduino Blink Test"
+		},
+		{
+			"name": "ESP32 Blink Test",
+			"path": "../../ESP32 Blink Test"
+		},
+		{
+			"name": "Temp Sensor",
+			"path": ".."
+		},
+		{
+			"name": "Servo Driver",
+			"path": "../../Servo Driver"
+		},
+		{
+			"name": "POT Test",
+			"path": "../../POT Test"
+		},
+		{
+			"name": "Distance",
+			"path": "../../Distance"
+		}
+	],
+	"settings": {}
+}
