@@ -20,12 +20,12 @@ void setup() {
   dht.begin();
   Serial.println("DHT11 Temperature and Humidity Sensor Test");
 
-  /*if (!display.begin(SSD1306_SWITCHCAPVCC, 0x3C)) {  //Test if oled connects
+  if (!display.begin(SSD1306_SWITCHCAPVCC, 0x3C)) {  //Test if oled connects
     Serial.println("SSD1306 allocation failed");
     for (;;)
       ;
   }
-  delay(2000);*/
+  delay(2000);
 
   //Prepare OLED
   display.clearDisplay();
@@ -37,41 +37,32 @@ void setup() {
 }
 
 void loop() {
-  delay(250);  // Wait between readings
-  display.clearDisplay();//Inefficient, make an if-statement to only clear if display needs updating, saving previous 
-  //temperatures and humidity values
+humidity = dht.readHumidity();
+  temperature = (dht.readTemperature() * 1.8) + 32;
 
-  //Serial.println("Reading data from DHT sensor...");
-  // Read humidity and temperature
-
-  humidity = dht.readHumidity();
-  temperature = (dht.readTemperature() * 1.8) + 32;  // Celsius by default, converts to F
-
-  /*if (isnan(humidity) || isnan(temperature)) {
+  if (isnan(humidity) || isnan(temperature)) {
     Serial.println("Failed to read from DHT sensor!");
+    delay(2000); // Wait before trying again
     return;
-  }*/
+  }
 
+  display.clearDisplay();
   display.setCursor(0, 0);
-  display.print("Humidity:  ");
+  display.print("Humidity: ");
   display.print(humidity);
-  display.print("%");
+  display.println("%");
 
   display.setCursor(0, 20);
-  display.print("Temp:  ");
+  display.print("Temp: ");
   display.print(temperature);
   display.print(" ");
-  display.print((char)247);  //Degrees symbol
+  display.print((char)247);
   display.print("F");
 
-  display.display();  //Display on screen
+  display.display();
 
+  Serial.print("Humidity: "); Serial.print(humidity); Serial.print("%\t");
+  Serial.print("Temperature: "); Serial.println(temperature);
 
-  /*Serial monitor for debugging
-  Serial.print("Humidity: ");
-  Serial.print(humidity);
-  Serial.print(" %\t");
-  Serial.print("Temperature: ");
-  Serial.print(temperature);
-  Serial.println(" °F");*/
+  delay(2000);
 }
